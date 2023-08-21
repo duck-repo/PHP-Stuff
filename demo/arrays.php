@@ -28,7 +28,7 @@
         foreach ($books as $book){
             echo "<li>$book&trade;</li>"; //Using HTML Entities
             //OR
-            echo "<li>${book}™</li>";//using curly braces {}. Everything contained in-between will be rendered. Otherwise, it will simply be echoed out as string.
+            echo "<li>${book}™</li>";//using curly braces {}. Everything contained in between will be rendered. Otherwise, the rest will be echoed out as string.
         }
         ?>
     </ul>
