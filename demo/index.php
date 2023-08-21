@@ -29,6 +29,9 @@
     $greeting2="hey";
     echo "<h2>printing  $greeting2  from php.</h2>";
 
+    $greeting3="salmon";
+
+    echo '$gretting3 from php again.'; //By using single quotation('), php will echo out the actual text contained in-between.
     ?>
     
 </body>
