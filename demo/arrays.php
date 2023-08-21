@@ -37,7 +37,7 @@
 
     <ul>
         <?php foreach ($animals as $animal): ?>
-         <li><?= $animal; ?></li> <!--Eching out $animal using shorthand -->
+         <li><?= $animal; ?></li> <!--Eching out $animal using shorthand  -->
         <?php endforeach; ?>
         
     </ul>
