@@ -49,25 +49,84 @@
         /* Key => Value*/ 
      ];
 
-     function filter_by_author($books){
+     function test_func(){
+        return "<h4>Hello from test_func</h4>";
+     }
+     
+     function filter_by_author_param1($books){
+        //Declaring new storage for filtered result. Can't use $books[] because result from this function could override the contents. eg below:
+        /*$books = [];
+
+        foreach($books as $book){
+            return $book;
+        }
+        */
+        //$books contains nothing anymore due to the declaration of $book = [] on line 57;
+
+        $filtered_books=[];
+
+        foreach($books as $book){
+            if($book['author']==="Benjamin Graham"){
+                $filtered_books[]=$book;
+            }
+        }
+        return $filtered_books;
+     }
+
+     function filter_by_author_param2($books,$author){
+        $filtered_books_by_author=[];
         
+        foreach($books as $book_by_author){
+            if($book_by_author["author"]===$author)
+                $filtered_books_by_author[] = $book_by_author;
+        }
+        return $filtered_books_by_author;
      }
     ?>
 
+    <h2>
+        Displaying all of the recommended books.
+    </h2>
+    
     <ul>
         <?php foreach ($books as $book) : ?>
-            <?php if($book["author"]==="Al Brooks") : ?> <!-- Use === (triple equal sign) to compare/match values in variables. -->
                 <li>
                     <a href="<?= $book["purchase_url"]; ?>">
-                        <?= $book["name"]; ?> - By <?= $book["author"] ?>
+                        <?= $book["name"]; ?> - By <?= $book["author"]; ?>
                     </a>
                 </li>
-            <?php endif; ?>
         <?php endforeach; ?>
     </ul>
+<hr>
+    <h2>
+        Displaying filtered version with single argument.
+    </h2>
+    <ul>
+        <?php foreach (filter_by_author_param1($books) as $filtered_book) : ?>
+            <li>
+                <a href="<?=$filtered_book["purchase_url"]; ?>">
+                    <?= $filtered_book["name"]; ?> - By <?=$filtered_book["author"]; ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<hr>
+    <h2>
+        Displaying filtered data with two arguments.
+    </h2>
+    <ul>
+        <?php foreach (filter_by_author_param2($books,"Al Brooks") as $filtered_book_by_author) : ?>
+            <li>
+                <a href="<?=$filtered_book_by_author["purchase_url"]; ?>">
+                    <?= $filtered_book_by_author["name"]; ?> - By <?=$filtered_book_by_author["author"]; ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<hr>
+    <div>
+        <?= test_func();?>
+    </div>
 
-    <p>
-        <?= filter_by_author($books)  ?>
-    </p>
 </body>
 </html>
